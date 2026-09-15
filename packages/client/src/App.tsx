@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button.tsx';
+import Chatbot from '@/components/Chatbot.tsx';
 
 function App() {
    const [message, setMessage] = useState<string>('Hello World!');
@@ -11,9 +12,8 @@ function App() {
    }, []);
 
    return (
-      <div className="p-4">
-         <h1 className={'font-bold text-3xl'}>{message}</h1>
-         <Button>Hello</Button>
+      <div className="p-4 h-screen w-2xl">
+         <Chatbot />
       </div>
    );
 }

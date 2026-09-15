@@ -20,7 +20,7 @@ export const chatService = {
          model: process.env.OLLAMA_MODEL || 'gemma4:31b',
          input: prompt,
          temperature: 0.2,
-         max_output_tokens: 100,
+         max_output_tokens: 200,
          previous_response_id:
             conversationRepository.getLastResponseId(conversationId),
       });
