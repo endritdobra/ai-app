@@ -6,6 +6,9 @@ To install dependencies:
 bun install
 ```
 
+Copy `.env.example` to `.env`, then add your Ollama API key. You can also
+change `OLLAMA_MODEL` to another model available in Ollama Cloud.
+
 To run:
 
 ```bash
