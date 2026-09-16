@@ -1,10 +1,20 @@
+import fs from 'fs';
+import path from 'path';
 import { conversationRepository } from '../repositories/conversation.repository.ts';
 import { OpenAI } from 'openai';
+import template from '../prompts/chatbot.txt';
 
 const client = new OpenAI({
    baseURL: 'https://ollama.com/v1',
    apiKey: process.env.OLLAMA_API_KEY,
 });
+
+const parkInfo = fs.readFileSync(
+   path.join(__dirname, '..', 'prompts', 'WonderWorld.md'),
+   'utf-8'
+);
+
+const instructions = template.replace('{{parkInfo}}', parkInfo);
 
 type ChatResponse = {
    id: string;
@@ -18,6 +28,7 @@ export const chatService = {
    ): Promise<ChatResponse> {
       const response = await client.responses.create({
          model: process.env.OLLAMA_MODEL || 'gemma4:31b',
+         instructions,
          input: prompt,
          temperature: 0.2,
          max_output_tokens: 200,
